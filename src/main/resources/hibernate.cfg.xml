@@ -9,22 +9,14 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost/testdb</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
-		<!-- Connection Pool Size -->
-		<property name="hibernate.connection.pool_size">1</property>
-		
+
 		<!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
 		<property name="hibernate.current_session_context_class">thread</property>
-		
-		<!-- Disable the second-level cache -->
-		<property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-		<!-- Outputs the SQL queries, should be disabled in Production -->
-		<property name="hibernate.show_sql">true</property>
-		
-		<!-- Dialect is required to let Hibernate know the Database Type, MySQL, Oracle etc
-			Hibernate 4 automatically figure out Dialect from Database Connection Metadata -->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> 
 
-		<!-- mapping file, we can use Bean annotations too --> 
-		<mapping resource="employee.hbm.xml" />
+		<!-- Mapping with model class containing annotations -->
+		<!--<mapping resource="employee.hbm.xml" />-->
+		<mapping class="model.Employee"/>
+		<mapping class="model.Department"/>
+		<mapping class="model.Project"/>
 	</session-factory>
 </hibernate-configuration>

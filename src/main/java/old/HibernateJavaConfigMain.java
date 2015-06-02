@@ -1,17 +1,17 @@
-package main;
+package old;
 
 import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import model.Employee1;
+import model.Employee;
 import util.HibernateUtil;
 
 public class HibernateJavaConfigMain {
 
 	public static void main(String[] args) {
-		Employee1 emp = new Employee1();
+		Employee emp = new Employee();
 		emp.setName("Lisa");
 		emp.setRole("Manager");
 		emp.setInsertTime(new Date());

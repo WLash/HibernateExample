@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import model.Employee1;
+import model.Employee;
 
 public class HibernateUtil {
 
@@ -46,7 +46,7 @@ public class HibernateUtil {
     	try {
             // Create the SessionFactory from hibernate.cfg.xml
         	Configuration configuration = new Configuration();
-        	configuration.configure("hibernate-annotation.cfg.xml");
+        	configuration.configure("hibernate.cfg.xml");
         	System.out.println("Hibernate Annotation Configuration loaded");
         	
         	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
@@ -78,10 +78,10 @@ public class HibernateUtil {
 		configuration.setProperties(props);
 		
 		//we can set mapping file or class with annotation
-		//addClass(Employee1.class) will look for resource
-		// com/journaldev/hibernate/model/Employee1.hbm.xml (not good)
+		//addClass(Employee.class) will look for resource
+		// com/journaldev/hibernate/model/Employee.hbm.xml (not good)
 
-		configuration.addAnnotatedClass(Employee1.class);
+		configuration.addAnnotatedClass(Employee.class);
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
     	System.out.println("Hibernate Java Config serviceRegistry created");
     	
