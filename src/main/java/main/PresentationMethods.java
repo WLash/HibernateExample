@@ -2,7 +2,6 @@ package main;
 
 import model.Department;
 import model.Employee;
-import model.Project;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +17,8 @@ import java.util.List;
 public class PresentationMethods {
 
     SessionFactory sessionFactory = null;
-    int departmentId = 21;
+    int departmentId = 22;
+    int departmentId2 = 23;
     int projectId = 19;
 
     private void loadSessionFactory(){
@@ -36,11 +36,13 @@ public class PresentationMethods {
 
         List<Employee> empList = new ArrayList<Employee>();
 
+        Department dep1 = getDepartment(departmentId);
+        Department dep2 = getDepartment(departmentId2);
 
-
-        empList.add(new Employee("David", "Developer", new Date(), getDepartment(departmentId)));
-        empList.add(new Employee("Horst", "CEO", new Date(), getDepartment(departmentId)));
-        empList.add(new Employee("Albert", "Assistent", new Date(), getDepartment(departmentId)));
+        empList.add(new Employee("David", "Developer", new Date(), dep1));
+        empList.add(new Employee("Horst", "CEO", new Date(), dep1));
+        empList.add(new Employee("Albert", "Assistent", new Date(), dep1));
+        empList.add(new Employee("Martina", "Developer", new Date(), dep2));
 
         //Get Session
         SessionFactory sessionFactory = getSessionFactory();
@@ -58,32 +60,34 @@ public class PresentationMethods {
     }
 
     public void insertDepartment(){
-        Department dep = new Department("IT");
+        Department dep = new Department("Softwareentwicklung");
+        Department dep2 = new Department("IT-Sicherheit");
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         //start transaction
         session.beginTransaction();
         //Save the Model object
         session.save(dep);
+        session.save(dep2);
         //Commit transaction
         session.getTransaction().commit();
         System.out.println(dep);
+        System.out.println(dep2);
 
         //terminate session factory, otherwise program won't end
         sessionFactory.close();
     }
 
     public void listEmployeeForDepartment(){
-        Department dep = getDepartment(departmentId);
-        for(Employee employee : dep.getEmployeeList()){
+        Department dep = getDepartment(departmentId2);
+        for (Employee employee : dep.getEmployeeList()){
             System.out.println(employee);
         }
     }
 
-
     public void listAllEmployees(){
-
         Department department = getDepartment(departmentId);
+
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -100,7 +104,6 @@ public class PresentationMethods {
 
     }
 
-
     public Department getDepartment(int id ){
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
@@ -109,14 +112,5 @@ public class PresentationMethods {
         session.getTransaction().commit();
         return (Department) object;
 
-    }
-
-    public Project getProject(int id){
-        SessionFactory sessionFactory = getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        Object object = session.get(Project.class, id);
-        session.getTransaction().commit();
-        return (Project) object;
     }
 }
