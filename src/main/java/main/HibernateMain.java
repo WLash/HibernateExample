@@ -8,22 +8,15 @@ public class HibernateMain {
 
 		//First - Insert
 		//pM.insertDepartment();
+		//System.out.println(pM.getDepartment(22));
 
 		//Second - OneToMany
 		//Insert Employees
 		//pM.insertEmployee();
-		//System.out.println(pM.getDepartment(21));
 		//pM.listEmployeeForDepartment();
 
-		//Third - ManyToMany
-		//pM.listProjectMember();
-
-		//Fourth - HQL
+		//Third - HQL
 		//pM.listAllEmployees();
-
-
-
-
 	}
 
 

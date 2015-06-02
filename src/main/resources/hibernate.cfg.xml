@@ -17,6 +17,5 @@
 		<!--<mapping resource="employee.hbm.xml" />-->
 		<mapping class="model.Employee"/>
 		<mapping class="model.Department"/>
-		<mapping class="model.Project"/>
 	</session-factory>
 </hibernate-configuration>

@@ -29,10 +29,6 @@ public class Employee {
 	@JoinColumn(name = "FK_DEPARTMENT", nullable = false)
 	private Department department;
 
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EMPLOYEE_PROJECT", joinColumns = { @JoinColumn(name = "EMPLOYEE_ID") }, inverseJoinColumns = { @JoinColumn(name = "PROJECT_ID") })
-	private Set<Project> projectList;*/
-
 	public Employee(){}
 
 	public Employee(String name, String role, Date insertTime, Department department){
@@ -68,14 +64,13 @@ public class Employee {
 	}
 	public Department getDepartment() { return department;}
 	public void setDepartment(Department department){ this.department = department;}
-	/*public Set<Project> getProjectList(){
-		return projectList;
-	}
-	public void setProjectList(Set<Project> projectList){
-		this.projectList = projectList;
-	}*/
+
 
 	public String toString(){
-		return "[Employee] ID: "+ getId() + "Name: " + getName() + ", Role: " + getRole() + ", InsertTime: " + getInsertTime() +", Department: "+getDepartment();
+		return "[Employee] ID: "+ getId() +
+				"Name: " + getName() +
+				", Role: " + getRole() +
+				", InsertTime: " + getInsertTime() +
+				", Department: "+getDepartment();
 	}
 }
